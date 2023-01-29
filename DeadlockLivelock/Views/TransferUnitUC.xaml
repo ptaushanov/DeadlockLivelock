@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DeadlockLivelock.Views"
              xmlns:vm="clr-namespace:DeadlockLivelock.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:TransferUnitUCVM}"
              mc:Ignorable="d" 
              d:DesignHeight="60"
              d:DesignWidth="800"
