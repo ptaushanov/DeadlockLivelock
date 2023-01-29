@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
      >
     <Window.DataContext>
-        <vm:MainVM/>
+        <vm:MainWindowVM/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
             >
             
             <StackPanel>
-                <ItemsControl ItemsSource="{Binding ComputeUnitList}" />
+                <ItemsControl ItemsSource="{Binding TransferUnitList}" />
             </StackPanel>
 
         </ScrollViewer>
@@ -59,7 +59,7 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
-                Command="{Binding AddCUCommand}"
+                Command="{Binding StartTransferCommand}"
                 />
 
             <Button 
@@ -71,7 +71,7 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
-                Command="{Binding AddCUCommand}"
+                Command="{Binding CreateNewTransferCommand}"
                 />
 
             <Button 
@@ -83,7 +83,6 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
-                Command="{Binding AddCUCommand}"
                 />
         </StackPanel>
 

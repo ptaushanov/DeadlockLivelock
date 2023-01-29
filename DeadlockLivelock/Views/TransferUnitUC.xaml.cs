@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeadlockLivelock.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DeadlockLivelock.Views
 {
     /// <summary>
-    /// Interaction logic for Transfer.xaml
+    /// Interaction logic for ComputeUnitUC.xaml
     /// </summary>
-    public partial class Transfer : Window
+    public partial class TransferUnitUC : UserControl
     {
-        public Transfer()
+        public TransferUnitUC()
         {
             InitializeComponent();
         }

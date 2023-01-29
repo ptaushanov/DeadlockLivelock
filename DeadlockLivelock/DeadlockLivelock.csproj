@@ -56,17 +56,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\BankAccount.cs" />
+    <Compile Include="Models\TransferStatus.cs" />
+    <Compile Include="Models\TransferUnit.cs" />
+    <Compile Include="Utils\ParallelTransferUtil.cs" />
     <Compile Include="Utils\RelayCommandAsync.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\TransferManager.cs" />
-    <Compile Include="ViewModels\ComputeUnitUCVM.cs" />
-    <Compile Include="ViewModels\MainVM.cs" />
-    <Compile Include="ViewModels\TransferVM.cs" />
-    <Compile Include="Views\ComputeUnitUC.xaml.cs">
-      <DependentUpon>ComputeUnitUC.xaml</DependentUpon>
+    <Compile Include="ViewModels\TransferUnitUCVM.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\TransferWindowVM.cs" />
+    <Compile Include="Views\TransferUnitUC.xaml.cs">
+      <DependentUpon>TransferUnitUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Transfer.xaml.cs">
-      <DependentUpon>Transfer.xaml</DependentUpon>
+    <Compile Include="Views\TransferWindow.xaml.cs">
+      <DependentUpon>TransferWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -80,11 +83,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ComputeUnitUC.xaml">
+    <Page Include="Views\TransferUnitUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Transfer.xaml">
+    <Page Include="Views\TransferWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
