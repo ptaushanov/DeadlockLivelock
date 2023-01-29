@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DeadlockLivelock.Views"
         xmlns:vm="clr-namespace:DeadlockLivelock.ViewModels"
         mc:Ignorable="d"
-        Title="Compute Unit Manager" Height="600" Width="1000"
+        Title="Система за множествени преводи" Height="600" Width="1000"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
      >
@@ -25,7 +25,7 @@
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            Content="Compute Unit Manager"
+            Content="Множествени преводи"
             FontSize="28"
             Padding="20"
             FontFamily="Cascadia Code"
@@ -51,7 +51,7 @@
             Margin="20"
         >
             <Button 
-                Content="Stop All"
+                Content="Стартирай трансфер"
                 FontFamily="Cascadia Code"
                 FontSize="16"
                 Padding="10 5"
@@ -59,10 +59,11 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
+                Command="{Binding AddCUCommand}"
                 />
 
             <Button 
-                Content="Restart All"
+                Content="Нов превод"
                 FontFamily="Cascadia Code"
                 FontSize="16"
                 Padding="10 5"
@@ -70,10 +71,11 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
+                Command="{Binding AddCUCommand}"
                 />
 
             <Button 
-                Content="Add CU"
+                Content="Нова сметка"
                 FontFamily="Cascadia Code"
                 FontSize="16"
                 Padding="10 5"

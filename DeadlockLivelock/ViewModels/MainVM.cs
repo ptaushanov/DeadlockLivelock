@@ -12,7 +12,7 @@ namespace DeadlockLivelock.ViewModels
 {
     public class MainVM
     {
-        public RelayCommand AddCUCommand { get; private set; }
+        public RelayCommand CreateNewTransferCommand { get; private set; }
         public ObservableCollection<ComputeUnitUC> ComputeUnitList { get; private set;} 
 
         public bool PendingOperations { get; set; }
@@ -20,11 +20,11 @@ namespace DeadlockLivelock.ViewModels
         public MainVM()
         {
             ComputeUnitList = new ObservableCollection<ComputeUnitUC>();
-            AddCUCommand = new RelayCommand(AddComputeUnit);
+            CreateNewTransferCommand = new RelayCommand(CreateNewTransfer);
             PendingOperations = false;
         }
 
-        private void AddComputeUnit (object _)
+        private void CreateNewTransfer (object _)
         {
             ComputeUnit newCU = new ComputeUnit(null, "New CU", "New");
             // TODO: save to db maybe

@@ -55,13 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\ComputeUnit.cs" />
+    <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Utils\RelayCommandAsync.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="Utils\TransferManager.cs" />
     <Compile Include="ViewModels\ComputeUnitUCVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\TransferVM.cs" />
     <Compile Include="Views\ComputeUnitUC.xaml.cs">
       <DependentUpon>ComputeUnitUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Transfer.xaml.cs">
+      <DependentUpon>Transfer.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +81,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ComputeUnitUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Transfer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
