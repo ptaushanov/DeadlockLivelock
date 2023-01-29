@@ -62,9 +62,13 @@
     <Compile Include="Utils\RelayCommandAsync.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\TransferManager.cs" />
+    <Compile Include="ViewModels\CreateAccountVM.cs" />
     <Compile Include="ViewModels\TransferUnitUCVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\TransferWindowVM.cs" />
+    <Compile Include="Views\CreateAccountWindow.xaml.cs">
+      <DependentUpon>CreateAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TransferUnitUC.xaml.cs">
       <DependentUpon>TransferUnitUC.xaml</DependentUpon>
     </Compile>
@@ -83,6 +87,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CreateAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TransferUnitUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

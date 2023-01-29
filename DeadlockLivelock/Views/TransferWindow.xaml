@@ -139,6 +139,7 @@
             Padding="10 5"
             Margin="20"
             Command="{Binding CreateTransferCommand}"    
+            IsEnabled="{Binding CanCreateTransfer}"
         />
     </Grid>
 </Window>

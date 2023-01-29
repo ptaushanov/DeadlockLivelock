@@ -94,7 +94,7 @@
                 Grid.Column="5"
                 Content="Изтрий"
                 FontFamily="Cascadia Code"
-                FontSize="16"
+                FontSize="14"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"

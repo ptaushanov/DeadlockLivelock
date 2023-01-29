@@ -26,8 +26,8 @@
             Grid.Row="0"
             Grid.Column="0"
             Content="Симулатор на преводи"
-            FontSize="28"
-            Padding="20"
+            FontSize="26"
+            Padding="40 20"
             FontFamily="Cascadia Code"
         />
 
@@ -56,9 +56,21 @@
             Margin="20"
         >
             <Button 
+                Content="Принудително спиране"
+                FontFamily="Cascadia Code"
+                FontSize="12"
+                Padding="10 5"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Margin="10"
+                Command="{Binding StartTransferCommand}"
+                />
+            
+            <Button 
                 Content="Стартирай трансфер"
                 FontFamily="Cascadia Code"
-                FontSize="16"
+                FontSize="12"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"
@@ -70,7 +82,7 @@
             <Button 
                 Content="Нов превод"
                 FontFamily="Cascadia Code"
-                FontSize="16"
+                FontSize="12"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"
@@ -82,13 +94,61 @@
             <Button 
                 Content="Нова сметка"
                 FontFamily="Cascadia Code"
-                FontSize="16"
+                FontSize="12"
+                Padding="10 5"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Margin="10"
+                Command="{Binding CreateAccountCommand}"
+                />
+
+            <Button 
+                Content="Логове"
+                FontFamily="Cascadia Code"
+                FontSize="12"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
                 />
+
+            <CheckBox 
+                IsChecked="{Binding IsDeadLockable}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="20 0 0 0"
+                />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="?Deadlock"
+                FontSize="12"
+                Padding="20"
+                FontFamily="Cascadia Code"
+                HorizontalAlignment="Left"
+                TextWrapping="Wrap"
+            />
+
+            <CheckBox 
+                IsChecked="{Binding IsLiveLockable}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="20 0 0 0"
+                
+                />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="?Livelock"
+                FontSize="12"
+                Padding="20"
+                FontFamily="Cascadia Code"
+                HorizontalAlignment="Left"
+                TextWrapping="Wrap"
+            />
+
         </StackPanel>
 
     </Grid>

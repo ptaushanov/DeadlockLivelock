@@ -34,6 +34,7 @@ namespace DeadlockLivelock.ViewModels
             {
                 _transferFrom = value;
                 OnPropertyChanged("TransferFrom");
+                OnPropertyChanged("CanCreateTransfer");
             }
         }
 
@@ -44,6 +45,7 @@ namespace DeadlockLivelock.ViewModels
             {
                 _transferTo = value;
                 OnPropertyChanged("TransferTo");
+                OnPropertyChanged("CanCreateTransfer");
             }
         }
 
@@ -54,6 +56,16 @@ namespace DeadlockLivelock.ViewModels
             {
                 _transferAmount = value;
                 OnPropertyChanged("TransferAmount");
+            }
+        }
+
+        public bool CanCreateTransfer
+        {
+            get
+            {
+                if (_transferFrom != null && _transferTo != null)
+                    return true;
+                return false;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,40 @@ using DeadlockLivelock.Views;
 
 namespace DeadlockLivelock.ViewModels
 {
-    public class MainWindowVM
+    public class MainWindowVM : INotifyPropertyChanged
     {
         public RelayCommand CreateNewTransferCommand { get; private set; }
         public RelayCommand StartTransferCommand { get; private set; }
+        public RelayCommand CreateAccountCommand { get; private set; }
         public List<TransferUnit> TransferUnitList { get; private set; }
         public ObservableCollection<TransferUnitUC> TransferUnitUCList { get; private set; }
         public ObservableCollection<TransferManager> TransferManagerList { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool _isDeadLockable;
+        private bool _isLiveLockable;
+
+
+        public bool IsDeadLockable
+        {
+            get { return _isDeadLockable; }
+            set
+            {
+                _isDeadLockable = value;
+                OnPropertyChanged("IsDeadLockable");
+            }
+        }
+
+        public bool IsLiveLockable
+        {
+            get { return _isLiveLockable; }
+            set
+            {
+                _isLiveLockable = value;
+                OnPropertyChanged("IsLiveLockable");
+            }
+        }
 
         public MainWindowVM()
         {
@@ -31,6 +59,10 @@ namespace DeadlockLivelock.ViewModels
             TransferUnitList = new List<TransferUnit>();
             CreateNewTransferCommand = new RelayCommand(CreateNewTransfer);
             StartTransferCommand = new RelayCommand(StartTransfer);
+            CreateAccountCommand = new RelayCommand(CreateAccount);
+
+            IsDeadLockable = true;
+            IsLiveLockable = true;
         }
 
         private void CreateNewTransfer(object _)
@@ -44,7 +76,21 @@ namespace DeadlockLivelock.ViewModels
 
         private void StartTransfer(object _)
         {
-            ParallelTransferUtil.StartParallelTransfer(TransferUnitList);
+            ParallelTransferUtil
+                .StartParallelTransfer(TransferUnitList, IsDeadLockable, IsLiveLockable);
+        }
+
+        private void CreateAccount(object _)
+        {
+            CreateAccountWindow createAccountWindow = new CreateAccountWindow();
+            createAccountWindow.DataContext =
+                new CreateAccountVM(TransferManagerList, createAccountWindow);
+            createAccountWindow.Show();
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
