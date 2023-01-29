@@ -34,7 +34,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="{Binding TU.TransferNumber,
-                StringFormat='От: {0}'}"
+                StringFormat='#{0}'}"
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 VerticalAlignment="Center"
@@ -49,6 +49,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 VerticalAlignment="Center"
+                TextWrapping="Wrap"
                 Margin="10"
             />
 
@@ -60,6 +61,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 VerticalAlignment="Center"
+                TextWrapping="Wrap"
                 Margin="10"
             />
 
@@ -71,6 +73,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 VerticalAlignment="Center"
+                TextWrapping="Wrap"
                 Margin="10"
             />
 
@@ -78,10 +81,11 @@
                 Grid.Row="0"
                 Grid.Column="4"
                 Text="{Binding TU.Amount,
-                StringFormat='Стойност: {0}'}"
+                StringFormat='Стойност: {0} лв'}"
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 VerticalAlignment="Center"
+                TextWrapping="Wrap"
                 Margin="10"
             />
 

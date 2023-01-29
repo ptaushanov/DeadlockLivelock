@@ -79,12 +79,12 @@ namespace DeadlockLivelock.ViewModels
 
             TransferUnitUC newTUUC = new TransferUnitUC()
             {
-                DataContext = new TransferUnitUCVM(newTU, _transferUnitUCList)
+                DataContext = 
+                    new TransferUnitUCVM(newTU, _transferUnitUCList, _transferUnitsList)
             };
 
             _transferUnitsList.Add(newTU);
             _transferUnitUCList.Add(newTUUC);
-            Debug.WriteLine(_transferUnitUCList.Count);
             _transferWindow.Close();
         }
 

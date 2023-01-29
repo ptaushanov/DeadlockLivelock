@@ -113,7 +113,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="16"
                 Text="{Binding TransferFrom.ManagedAccount.Balance, 
-                StringFormat='Баланс на изпращач: {0} лв.'}" 
+                StringFormat='Баланс на изпращач: {0} лв'}" 
                 Margin="0 5"
                 />
 
@@ -121,7 +121,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="16"
                 Text="{Binding TransferTo.ManagedAccount.Balance, 
-                StringFormat='Баланс на получател: {0} лв.'}" 
+                StringFormat='Баланс на получател: {0} лв'}" 
                 Margin="0 5"
                 />
         </StackPanel>
