@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DeadlockLivelock.Views"
+        xmlns:local="clr-namespace:DeadlockLivelock.Views" 
+        xmlns:viewmodels="clr-namespace:DeadlockLivelock.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:TransferWindowVM}"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="Трансфер" Height="550" Width="450">
     <Grid>
         <Grid.ColumnDefinitions>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DeadlockLivelock.Views"
         xmlns:vm="clr-namespace:DeadlockLivelock.ViewModels"
         mc:Ignorable="d"
-        Title="Система за множествени преводи" Height="600" Width="1000"
+        Title="Симулатор на преводи" Height="600" Width="1000"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
      >
@@ -25,23 +25,28 @@
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            Content="Множествени преводи"
+            Content="Симулатор на преводи"
             FontSize="28"
             Padding="20"
             FontFamily="Cascadia Code"
         />
 
-        <ScrollViewer
+        <Border
+            BorderBrush="Black"
+            BorderThickness="2"
             Grid.Row="1"
             Grid.Column="0"
-            Padding="20 10"
             >
-            
-            <StackPanel>
-                <ItemsControl ItemsSource="{Binding TransferUnitList}" />
-            </StackPanel>
+            <ScrollViewer
+                Padding="20 10"
+            >
 
-        </ScrollViewer>
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding TransferUnitUCList}" />
+                </StackPanel>
+
+            </ScrollViewer>
+        </Border>
 
         <StackPanel 
             Grid.Row="2"

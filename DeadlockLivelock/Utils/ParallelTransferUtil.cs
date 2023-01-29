@@ -14,6 +14,7 @@ namespace DeadlockLivelock.Utils
            Task[] tasks = transferUnits
                 .Select(transferUnit => Task.Run(async() =>
                 {
+                    transferUnit.Status = TransferStatus.TRANSFERING;
                     while (true)
                     {
                         if (await TransferManager.Transfer(
@@ -22,6 +23,7 @@ namespace DeadlockLivelock.Utils
                             transferUnit.Amount
                         )) break;
                     }
+                    transferUnit.Status = TransferStatus.COMPLEATED;
                 }))
                 .ToArray();
 
