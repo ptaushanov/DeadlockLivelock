@@ -21,6 +21,7 @@ namespace DeadlockLivelock.ViewModels
         public RelayCommand CreateAccountCommand { get; private set; }
         public RelayCommand OpenLogCommand { get; private set; }
         public RelayCommand ForceStopCommand { get; private set; }
+        public RelayCommand ViewAccountsCommand { get; private set; }
         public List<TransferUnit> TransferUnitList { get; private set; }
         public ObservableCollection<TransferUnitUC> TransferUnitUCList { get; private set; }
         public ObservableCollection<TransferManager> TransferManagerList { get; private set; }
@@ -67,6 +68,7 @@ namespace DeadlockLivelock.ViewModels
             CreateAccountCommand = new RelayCommand(CreateAccount);
             OpenLogCommand = new RelayCommand(OpenLog);
             ForceStopCommand = new RelayCommand(ForceStop);
+            ViewAccountsCommand = new RelayCommand(ViewAccounts);
 
             IsDeadLockable = true;
             IsLiveLockable = true;
@@ -127,6 +129,15 @@ namespace DeadlockLivelock.ViewModels
         {
             _cancellationSource.Cancel();
             _cancellationSource = new CancellationTokenSource();
+        }
+
+        private void ViewAccounts(object _)
+        {
+            ViewAccountsWindows viewAccounts = new ViewAccountsWindows()
+            {
+                DataContext = new ViewAccountsVM(TransferManagerList)
+            };
+            viewAccounts.Show();
         }
 
         private void OnPropertyChanged(string propertyName)
