@@ -108,6 +108,7 @@
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
+                Command="{Binding ForceStopCommand}"
                 />
 
             <Button 

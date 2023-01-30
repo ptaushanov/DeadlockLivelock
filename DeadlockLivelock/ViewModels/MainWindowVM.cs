@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using DeadlockLivelock.Models;
@@ -14,10 +15,12 @@ namespace DeadlockLivelock.ViewModels
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
+        private CancellationTokenSource _cancellationSource;
         public RelayCommand CreateNewTransferCommand { get; private set; }
-        public RelayCommand StartTransferCommand { get; private set; }
+        public RelayCommandAsync StartTransferCommand { get; private set; }
         public RelayCommand CreateAccountCommand { get; private set; }
         public RelayCommand OpenLogCommand { get; private set; }
+        public RelayCommand ForceStopCommand { get; private set; }
         public List<TransferUnit> TransferUnitList { get; private set; }
         public ObservableCollection<TransferUnitUC> TransferUnitUCList { get; private set; }
         public ObservableCollection<TransferManager> TransferManagerList { get; private set; }
@@ -60,12 +63,15 @@ namespace DeadlockLivelock.ViewModels
             };
             TransferUnitList = new List<TransferUnit>();
             CreateNewTransferCommand = new RelayCommand(CreateNewTransfer);
-            StartTransferCommand = new RelayCommand(StartTransfer);
+            StartTransferCommand = new RelayCommandAsync(StartTransfer);
             CreateAccountCommand = new RelayCommand(CreateAccount);
             OpenLogCommand = new RelayCommand(OpenLog);
+            ForceStopCommand = new RelayCommand(ForceStop);
 
             IsDeadLockable = true;
             IsLiveLockable = true;
+
+            _cancellationSource = new CancellationTokenSource();
         }
 
         private void CreateNewTransfer(object _)
@@ -77,10 +83,30 @@ namespace DeadlockLivelock.ViewModels
             transferWindow.Show();
         }
 
-        private void StartTransfer(object _)
+        private async Task StartTransfer(object _)
         {
-            ParallelTransferUtil
-                .StartParallelTransfer(TransferUnitList, IsDeadLockable, IsLiveLockable);
+            CancellationToken cancellationToken = _cancellationSource.Token;
+
+            bool didComplete = await ParallelTransferUtil
+                .StartParallelTransfer(TransferUnitList, IsDeadLockable, IsLiveLockable, cancellationToken);
+
+            if(didComplete)
+            {
+                MessageBox.Show(
+                    "Всички преводи се изпълниха успешно!",
+                    "Усхешни преводи",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+                return;
+            }
+
+            MessageBox.Show(
+                    "Всички преводи бяха принудително спряни!",
+                    "Неусхешни преводи",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Stop
+                );
         }
 
         private void CreateAccount(object _)
@@ -95,6 +121,12 @@ namespace DeadlockLivelock.ViewModels
         {
             LogWindow logWindow = new LogWindow();
             logWindow.Show();
+        }
+
+        private void ForceStop(object _)
+        {
+            _cancellationSource.Cancel();
+            _cancellationSource = new CancellationTokenSource();
         }
 
         private void OnPropertyChanged(string propertyName)

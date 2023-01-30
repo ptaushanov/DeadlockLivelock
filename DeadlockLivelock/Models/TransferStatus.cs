@@ -10,6 +10,7 @@ namespace DeadlockLivelock.Models
     {
         PENDING,
         TRANSFERING,
-        COMPLEATED
+        COMPLEATED,
+        CANCELED
     }
 }
