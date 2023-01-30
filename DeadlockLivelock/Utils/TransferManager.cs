@@ -1,4 +1,5 @@
-﻿using DeadlockLivelock.Models;
+﻿using DeadlockLivelock.DAL;
+using DeadlockLivelock.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,8 +13,8 @@ namespace DeadlockLivelock.Utils
 {
     public class TransferManager : INotifyPropertyChanged
     {
-        private object _flag;
-        private SemaphoreSlim _semaphore;
+        private readonly object _flag;
+        private readonly SemaphoreSlim _semaphore;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,8 +32,9 @@ namespace DeadlockLivelock.Utils
             await _semaphore.WaitAsync();
             try
             {
-                await Task.Delay(1000);
                 ManagedAccount.Balance -= amount;
+                //await Task.Delay(1000);
+                await BankAccountService.SaveChangesAsync(1000);
                 OnPropertyChanged("ManagedAccount");
                 return true;
             }
@@ -56,12 +58,15 @@ namespace DeadlockLivelock.Utils
             // Livelocable senario
             if (Monitor.TryEnter(_flag))
             {
-                if (isDeadLockable && !isLiveLockable)
-                    await Task.Delay(1000);
-                else
-                    Task.Delay(1000).Wait();
-
                 ManagedAccount.Balance -= amount;
+
+                if (isDeadLockable && !isLiveLockable)
+                    //await Task.Delay(1000);
+                    await BankAccountService.SaveChangesAsync(1000);
+                else
+                    //Task.Delay(1000).Wait();
+                    BankAccountService.SaveChangesAsync(1000).Wait();
+
                 OnPropertyChanged("ManagedAccount");
                 return true;
             }
@@ -73,8 +78,9 @@ namespace DeadlockLivelock.Utils
             await _semaphore.WaitAsync();
             try
             {
-                await Task.Delay(1000);
                 ManagedAccount.Balance += amount;
+                //await Task.Delay(1000);
+                await BankAccountService.SaveChangesAsync(1000);
                 OnPropertyChanged("ManagedAccount");
                 return true;
             }
@@ -99,11 +105,16 @@ namespace DeadlockLivelock.Utils
             // Livelocable senario
             if (Monitor.TryEnter(_flag))
             {
-                if (isDeadLockable && !isLiveLockable)
-                    await Task.Delay(1000);
-                else
-                    Task.Delay(1000).Wait();
                 ManagedAccount.Balance += amount;
+
+                if (isDeadLockable && !isLiveLockable)
+                    //await Task.Delay(1000);
+                    await BankAccountService.SaveChangesAsync(1000);
+
+                else
+                    //Task.Delay(1000).Wait();
+                    BankAccountService.SaveChangesAsync(1000).Wait();
+
                 OnPropertyChanged("ManagedAccount");
                 return true;
             }

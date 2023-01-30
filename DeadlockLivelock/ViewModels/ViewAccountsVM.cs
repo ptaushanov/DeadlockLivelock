@@ -1,4 +1,5 @@
-﻿using DeadlockLivelock.Utils;
+﻿using DeadlockLivelock.DAL;
+using DeadlockLivelock.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace DeadlockLivelock.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<TransferManager> TransferManagerList { get; private set; }
-        public RelayCommand DeleteAccountCommand { get; private set; }
+        public RelayCommandAsync DeleteAccountCommand { get; private set; }
 
         public TransferManager SelectedTransferManager
         {
@@ -36,11 +37,13 @@ namespace DeadlockLivelock.ViewModels
         public ViewAccountsVM(ObservableCollection<TransferManager> transferManagerList)
         {
             TransferManagerList = transferManagerList;
-            DeleteAccountCommand = new RelayCommand(DeleteAccount);
+            DeleteAccountCommand = new RelayCommandAsync(DeleteAccountAsync);
         }
 
-        private void DeleteAccount(object _)
+        private async Task DeleteAccountAsync(object _)
         {
+            await BankAccountService
+                .DeleteAccountAsync(SelectedTransferManager.ManagedAccount);
             TransferManagerList.Remove(SelectedTransferManager);
             SelectedTransferManager = null;
         }

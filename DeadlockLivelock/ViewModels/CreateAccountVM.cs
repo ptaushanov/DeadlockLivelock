@@ -1,4 +1,5 @@
-﻿using DeadlockLivelock.Models;
+﻿using DeadlockLivelock.DAL;
+using DeadlockLivelock.Models;
 using DeadlockLivelock.Utils;
 using DeadlockLivelock.Views;
 using System;
@@ -50,7 +51,7 @@ namespace DeadlockLivelock.ViewModels
             }
         }
 
-        public RelayCommand CreateAccountCommand { get; private set; }
+        public RelayCommandAsync CreateAccountCommand { get; private set; }
 
         public CreateAccountVM(
             ObservableCollection<TransferManager> transferManagerList,
@@ -59,14 +60,17 @@ namespace DeadlockLivelock.ViewModels
         {
             _transferManagerList = transferManagerList;
             _createAccountWindow = createAccountWindow;
-            CreateAccountCommand = new RelayCommand(CreateAccount);
+            CreateAccountCommand = new RelayCommandAsync(CreateAccountAsync);
         }
 
-        private void CreateAccount(object _)
+        private async Task CreateAccountAsync(object _)
         {
             BankAccount newAccount = new BankAccount(null, Balance, AccountName);
             TransferManager newTransferManager = new TransferManager(newAccount);
+
             _transferManagerList.Add(newTransferManager);
+            await BankAccountService.SaveAccountAsync(newAccount);
+
             _createAccountWindow.Close();
 
         }

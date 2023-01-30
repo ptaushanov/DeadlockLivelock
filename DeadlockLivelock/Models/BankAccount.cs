@@ -12,6 +12,8 @@ namespace DeadlockLivelock.Models
         public string AccountName { get; set; }
         public double Balance { get; set; }
 
+        public BankAccount() {}
+
         public BankAccount(int? bankAccountId, double balance, string accountName)
         {
             BankAccountId = bankAccountId;

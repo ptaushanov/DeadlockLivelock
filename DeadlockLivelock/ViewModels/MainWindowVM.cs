@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using DeadlockLivelock.DAL;
 using DeadlockLivelock.Models;
 using DeadlockLivelock.Utils;
 using DeadlockLivelock.Views;
@@ -52,16 +53,31 @@ namespace DeadlockLivelock.ViewModels
             }
         }
 
+        private void LoadTransferManagerList()
+        {
+            BankAccountService
+                .LoadAccounts()
+                .ToList()
+                .ForEach(bankAccount =>
+                {
+                    TransferManager transferManager = new TransferManager(bankAccount);
+                    TransferManagerList.Add(transferManager);
+                });
+        }
+
         public MainWindowVM()
         {
-            TransferManager studentAccount = new TransferManager(new BankAccount(1, 50000, "Student account"));
-            TransferManager universityAccount = new TransferManager(new BankAccount(2, 100000, "University account"));
+            //TransferManager studentAccount = new TransferManager(new BankAccount(1, 50000, "Student account"));
+            //TransferManager universityAccount = new TransferManager(new BankAccount(2, 100000, "University account"));
 
             TransferUnitUCList = new ObservableCollection<TransferUnitUC>();
             TransferManagerList = new ObservableCollection<TransferManager>()
             {
-                studentAccount, universityAccount
+                //studentAccount, universityAccount
             };
+
+            LoadTransferManagerList();
+
             TransferUnitList = new List<TransferUnit>();
             CreateNewTransferCommand = new RelayCommand(CreateNewTransfer);
             StartTransferCommand = new RelayCommandAsync(StartTransfer);
@@ -92,7 +108,7 @@ namespace DeadlockLivelock.ViewModels
             bool didComplete = await ParallelTransferUtil
                 .StartParallelTransfer(TransferUnitList, IsDeadLockable, IsLiveLockable, cancellationToken);
 
-            if(didComplete)
+            if (didComplete)
             {
                 MessageBox.Show(
                     "Всички преводи се изпълниха успешно!",
