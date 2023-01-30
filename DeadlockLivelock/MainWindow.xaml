@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
@@ -53,65 +54,84 @@
             Grid.Column="0"
             Orientation="Horizontal"
             FlowDirection="RightToLeft"
-            Margin="20"
+            Margin="10 0"
         >
-            <Button 
-                Content="Принудително спиране"
-                FontFamily="Cascadia Code"
-                FontSize="12"
-                Padding="10 5"
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="2"
-                Margin="10"
-                Command="{Binding StartTransferCommand}"
-                />
-            
-            <Button 
-                Content="Стартирай трансфер"
-                FontFamily="Cascadia Code"
-                FontSize="12"
-                Padding="10 5"
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="2"
-                Margin="10"
-                Command="{Binding StartTransferCommand}"
-                />
 
             <Button 
                 Content="Нов превод"
                 FontFamily="Cascadia Code"
-                FontSize="12"
+                FontSize="14"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"
                 BorderThickness="2"
-                Margin="10"
+                Margin="10 10 0 0"
                 Command="{Binding CreateNewTransferCommand}"
-                />
+            />
 
             <Button 
                 Content="Нова сметка"
                 FontFamily="Cascadia Code"
-                FontSize="12"
+                FontSize="14"
                 Padding="10 5"
                 Background="White"
                 BorderBrush="Black"
                 BorderThickness="2"
-                Margin="10"
+                Margin="10 10 0 0"
                 Command="{Binding CreateAccountCommand}"
+                />
+            <Button 
+                Content="Налични сметки"
+                FontFamily="Cascadia Code"
+                FontSize="14"
+                Padding="10 5"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Margin="10 10 0 0"
+                />
+
+        </StackPanel>
+        <StackPanel 
+            Grid.Row="3"
+            Grid.Column="0"
+            Orientation="Horizontal"
+            FlowDirection="RightToLeft"
+            Margin="10 0"
+        >
+            <Button 
+                Content="Принудително спиране"
+                FontFamily="Cascadia Code"
+                FontSize="14"
+                Padding="10 5"
+                Background="#FAA0A0"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Margin="10"
+                />
+
+            <Button 
+                Content="Стартирай трансфер"
+                FontFamily="Cascadia Code"
+                FontSize="14"
+                Padding="10 5"
+                Background="#C1E1C1"
+                BorderBrush="Black"
+                BorderThickness="2"
+                Margin="10"
+                Command="{Binding StartTransferCommand}"
                 />
 
             <Button 
                 Content="Логове"
                 FontFamily="Cascadia Code"
-                FontSize="12"
+                FontSize="14"
                 Padding="10 5"
-                Background="White"
+                Background="#FAC898"
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10"
+                Command="{Binding OpenLogCommand}"
                 />
 
             <CheckBox 
@@ -124,10 +144,11 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="?Deadlock"
-                FontSize="12"
-                Padding="20"
+                FontSize="14"
                 FontFamily="Cascadia Code"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Padding="5"
                 TextWrapping="Wrap"
             />
 
@@ -142,8 +163,9 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Text="?Livelock"
-                FontSize="12"
-                Padding="20"
+                FontSize="14"
+                VerticalAlignment="Center"
+                Padding="5"
                 FontFamily="Cascadia Code"
                 HorizontalAlignment="Left"
                 TextWrapping="Wrap"

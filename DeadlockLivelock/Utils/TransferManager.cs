@@ -123,6 +123,7 @@ namespace DeadlockLivelock.Utils
                 await from.WithdrawAsync(amount, isDeadLockable, isLiveLockable);
 
             if (!didWithdraw) return false;
+            Logger.Log("Withdrawing " + amount + " from " + from.ManagedAccount.BankAccountId);
             Debug.WriteLine("Withdrawing " + amount + " from " + from.ManagedAccount.BankAccountId);
 
             bool didDeposit =
@@ -130,13 +131,15 @@ namespace DeadlockLivelock.Utils
 
             if (!didDeposit)
             {
+                Logger.Log("Refunding " + amount + " to " + from.ManagedAccount.BankAccountId);
                 Debug.WriteLine("Refunding " + amount + " to " + from.ManagedAccount.BankAccountId);
+
                 await from
                     .DepositAsync(amount, isDeadLockable, isLiveLockable);
                 return false;
             };
 
-
+            Logger.Log("Depositing " + amount + " to " + to.ManagedAccount.BankAccountId);
             Debug.WriteLine("Depositing " + amount + " to " + to.ManagedAccount.BankAccountId);
             return true;
         }

@@ -96,7 +96,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 Padding="10 5"
-                Background="White"
+                Background="#FAA0A0"
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10 5"

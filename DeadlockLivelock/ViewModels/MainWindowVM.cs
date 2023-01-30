@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using DeadlockLivelock.Models;
 using DeadlockLivelock.Utils;
 using DeadlockLivelock.Views;
@@ -16,6 +17,7 @@ namespace DeadlockLivelock.ViewModels
         public RelayCommand CreateNewTransferCommand { get; private set; }
         public RelayCommand StartTransferCommand { get; private set; }
         public RelayCommand CreateAccountCommand { get; private set; }
+        public RelayCommand OpenLogCommand { get; private set; }
         public List<TransferUnit> TransferUnitList { get; private set; }
         public ObservableCollection<TransferUnitUC> TransferUnitUCList { get; private set; }
         public ObservableCollection<TransferManager> TransferManagerList { get; private set; }
@@ -60,6 +62,7 @@ namespace DeadlockLivelock.ViewModels
             CreateNewTransferCommand = new RelayCommand(CreateNewTransfer);
             StartTransferCommand = new RelayCommand(StartTransfer);
             CreateAccountCommand = new RelayCommand(CreateAccount);
+            OpenLogCommand = new RelayCommand(OpenLog);
 
             IsDeadLockable = true;
             IsLiveLockable = true;
@@ -86,6 +89,12 @@ namespace DeadlockLivelock.ViewModels
             createAccountWindow.DataContext =
                 new CreateAccountVM(TransferManagerList, createAccountWindow);
             createAccountWindow.Show();
+        }
+
+        private void OpenLog(object _)
+        {
+            LogWindow logWindow = new LogWindow();
+            logWindow.Show();
         }
 
         private void OnPropertyChanged(string propertyName)
