@@ -62,7 +62,7 @@
                 FontFamily="Cascadia Code"
                 FontSize="14"
                 Padding="10 5"
-                Background="White"
+                Background="#A7C7E7"
                 BorderBrush="Black"
                 BorderThickness="2"
                 Margin="10 10 0 0"
