@@ -1,4 +1,4 @@
-# 🪢 Simulation app for demonstrating deadlock and livelock in C# 🪢
+# 🪢 Simulation app for deadlock and livelock in C# 🪢
 
 ## 📝 Description
 
