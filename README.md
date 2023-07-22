@@ -11,6 +11,7 @@ Framework 4.7.2.
 Technical University of Sofia.
 
 ## 📷 Screenshots
+![image](https://github.com/ptaushanov/DeadlockLivelock/assets/33032001/10d6b4c0-d1f5-4d1a-8394-959cb6e1f140)
 
 ## 📦 Setup
 
